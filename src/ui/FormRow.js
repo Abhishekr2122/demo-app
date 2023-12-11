@@ -17,7 +17,7 @@ const FormRow = styled.div`
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid var(--color-grey-100);
+    border-bottom: 1px solid black;
   }
 
   &:has(button) {
