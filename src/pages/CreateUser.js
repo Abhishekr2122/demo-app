@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Form from "../ui/Form";
 import FormRow from "../ui/FormRow";
 import Input from "../ui/Input";
+import Button from "../ui/Button";
 
 const Paragraph = styled.p`
   color: red;
@@ -64,6 +65,18 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>Zipcode</strong>
         </label>
+      </FormRow>
+      <FormRow>
+        {/* type is an HTML attribute! */}
+        <Button
+          variation="secondary"
+          type="reset"
+          //   disabled={isLoading}
+          //   onClick={reset}
+        >
+          Cancel
+        </Button>
+        <Button>Create new user</Button>
       </FormRow>
     </Form>
   );
