@@ -73,6 +73,7 @@ export default function CreateUser() {
           type="reset"
           //   disabled={isLoading}
           //   onClick={reset}
+          style={{ color: "white" }}
         >
           Cancel
         </Button>

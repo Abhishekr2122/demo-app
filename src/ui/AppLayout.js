@@ -4,12 +4,13 @@ import SideBar from "../components/SideBar";
 import { Outlet } from "react-router-dom";
 
 const Main = styled.main`
-  background-color: var(--color-grey-50);
+  background-color: #111827;
   padding: 4rem 4.8rem 6.4rem;
   overflow: scroll;
 
   &::-webkit-scrollbar {
     display: none;
+    scroll-behavior: smooth;
   }
 `;
 
@@ -18,6 +19,7 @@ const StyledAppLayout = styled.div`
   grid-template-columns: 26rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
+  background-color: #111827;
 `;
 
 const Container = styled.div`
