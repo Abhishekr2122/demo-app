@@ -1,6 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { HiOutlineCalendarDays, HiOutlineHome } from "react-icons/hi2";
+import { PiUsersThreeThin } from "react-icons/pi";
+import { HiOutlineCalendarDays } from "react-icons/hi2";
+import { TbUsersPlus } from "react-icons/tb";
+import { useEffect } from "react";
+import { getCountries } from "../getCountries";
 
 const NavList = styled.ul`
   display: flex;
@@ -48,19 +52,22 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function MainNav() {
+  useEffect(function () {
+    getCountries();
+  }, []);
   return (
     <nav>
       <NavList>
         <li>
           <StyledNavLink to="/users">
-            <HiOutlineHome />
-            <span>Home</span>
+            <PiUsersThreeThin />
+            <span>Users</span>
           </StyledNavLink>
         </li>
         <li>
           <StyledNavLink to="/createusers">
-            <HiOutlineCalendarDays />
-            <span>Bookings</span>
+            <TbUsersPlus />
+            <span>Create users</span>
           </StyledNavLink>
         </li>
       </NavList>

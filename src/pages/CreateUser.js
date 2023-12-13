@@ -45,19 +45,19 @@ export default function CreateUser() {
       </FormRow>
       <FormRow>
         <label>
-          <strong style={{ color: "white" }}> Address1</strong>
+          <strong style={{ color: "white" }}> Address2</strong>
         </label>
-        <Input type="text" id="address2" />
+        <Input type="text" id="address2" placeholder="(optional)" />
       </FormRow>
       <FormRow>
         <label>
-          <strong style={{ color: "white" }}>State</strong>
+          <strong style={{ color: "white" }}>Country</strong>
         </label>
         <Input type="search" id="state" />
       </FormRow>
       <FormRow>
         <label>
-          <strong style={{ color: "white" }}>Country</strong>
+          <strong style={{ color: "white" }}>State</strong>
         </label>
         <Input type="search" id="country" />
       </FormRow>
