@@ -3,6 +3,7 @@ import Form from "../ui/Form";
 import FormRow from "../ui/FormRow";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
+import { getCountries } from "../getCountries";
 
 const Paragraph = styled.p`
   color: red;
@@ -17,54 +18,62 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>First Name</strong>
         </label>
-        <Input type="text" id="firstName" />
+        <Input type="text" id="firstName" placeholder="firtname" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Last Name</strong>
         </label>
-        <Input type="text" id="lastName" />
+        <Input type="text" id="lastName" placeholder="lastname" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Email Address</strong>
         </label>
-        <Input type="email" />
+        <Input type="email" placeholder="email" id="email" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Mobile</strong>
         </label>
-        <Input type="tel" id="phonenumber" />
+        <Input type="tel" id="phonenumber" placeholder="phonenumber" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}> Address1</strong>
         </label>
-        <Input type="text" id="address1" />
+        <Input type="text" id="address1" placeholder="address1" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}> Address2</strong>
         </label>
-        <Input type="text" id="address2" placeholder="(optional)" />
+        <Input type="text" id="address2" placeholder="address2(optional)" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Country</strong>
         </label>
-        <Input type="search" id="state" />
+        <Input
+          type="search"
+          id="country"
+          placeholder="country"
+          onFocus={function () {
+            getCountries();
+          }}
+        />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>State</strong>
         </label>
-        <Input type="search" id="country" />
+        <Input type="search" id="state" placeholder="state" />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Zipcode</strong>
         </label>
+        <Input type="number" id="zipcode" placeholder="zipcode" />
       </FormRow>
       <FormRow>
         {/* type is an HTML attribute! */}

@@ -1,3 +1,3 @@
-export default function Logo({ source }) {
-  return <img src={source} alt="image" />;
+export default function Logo({ source, style }) {
+  return <img src={source} alt="hello" style={style} />;
 }

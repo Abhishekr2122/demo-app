@@ -8,7 +8,7 @@ const Form = styled.form`
 
       /* Box */
       background-color: #18212f;
-      border: 1px solid var(--color-grey-100);
+      border: 1px solid #18212f;
 
       border-radius: var(--border-radius-md);
     `}

@@ -52,9 +52,6 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export default function MainNav() {
-  useEffect(function () {
-    getCountries();
-  }, []);
   return (
     <nav>
       <NavList>
