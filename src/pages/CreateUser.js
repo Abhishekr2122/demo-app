@@ -26,31 +26,56 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>Last Name</strong>
         </label>
-        <Input type="text" id="lastName" placeholder="lastname" />
+        <Input
+          type="text"
+          id="lastName"
+          placeholder="lastname"
+          autoComplete="new-text"
+        />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Email Address</strong>
         </label>
-        <Input type="email" placeholder="email" id="email" />
+        <Input
+          type="email"
+          placeholder="email"
+          id="email"
+          autoComplete="new-email"
+        />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Mobile</strong>
         </label>
-        <Input type="tel" id="phonenumber" placeholder="phonenumber" />
+        <Input
+          type="tel"
+          id="phonenumber"
+          placeholder="phonenumber"
+          autoComplete="new-tel"
+        />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}> Address1</strong>
         </label>
-        <Input type="text" id="address1" placeholder="address1" />
+        <Input
+          type="text"
+          id="address1"
+          placeholder="address1"
+          autoComplete="new-text"
+        />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}> Address2</strong>
         </label>
-        <Input type="text" id="address2" placeholder="address2(optional)" />
+        <Input
+          type="text"
+          id="address2"
+          placeholder="address2(optional)"
+          autoComplete="new-text"
+        />
       </FormRow>
       <FormRow>
         <label>
@@ -73,13 +98,23 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>State</strong>
         </label>
-        <Input type="search" id="state" placeholder="state" />
+        <Input
+          type="search"
+          id="state"
+          placeholder="state"
+          autoComplete="new-search"
+        />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Zipcode</strong>
         </label>
-        <Input type="number" id="zipcode" placeholder="zipcode" />
+        <Input
+          type="number"
+          id="zipcode"
+          placeholder="zipcode"
+          autoComplete="new-number"
+        />
       </FormRow>
       <FormRow>
         {/* type is an HTML attribute! */}

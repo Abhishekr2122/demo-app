@@ -2,11 +2,14 @@ import { createContext, useContext, useState } from "react";
 import Input from "./Input";
 import { getCountries } from "../getCountries";
 import { createPortal } from "react-dom";
+import styled from "styled-components";
 
 const ModalContext = createContext();
 
 export default function Modal({ children }) {
   const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState("");
+  console.log(isFocused);
   // const [data, setData] = useState([]);
   const data = [
     "Portugal",
@@ -230,9 +233,10 @@ export function useModalContext() {
 
 export function InputElem({ type, placeholder }) {
   const { isFocused, setIsFocused, data } = useModalContext();
+
   return (
     <Input
-      type={type}
+      type="search"
       placeholder={placeholder}
       onFocus={function () {
         if (type === "country") {
@@ -246,32 +250,56 @@ export function InputElem({ type, placeholder }) {
           getCountries();
         }
       }}
+      onBlur={function () {
+        setIsFocused(false);
+      }}
+      autoComplete="new-search"
     />
   );
 }
 
+const StyledDiv = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 4px;
+  height: 250px;
+  width: auto;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  background-color: #111827;
+  &::-webkit-scrollbar {
+    display: none;
+    scroll-behavior: smooth;
+  }
+`;
 export function OutPutContainer() {
   const { isFocused, data } = useModalContext();
 
   if (isFocused) {
     return createPortal(
-      <div
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          border: "1px solid yellow",
-          height: "100px",
-          width: "100px",
-          overflow: "scroll",
-        }}
-      >
+      <StyledDiv>
         <ul>
           {data?.map(function (citem, i) {
-            return <li key={i}>{citem}</li>;
+            return (
+              <li
+                key={i}
+                style={{
+                  color: "white",
+                  cursor: "pointer",
+                  padding: "4px",
+                  borderBottom: "2px solid #18212f",
+                }}
+                onClick={function () {
+                  console.log(citem);
+                }}
+              >
+                {<strong style={{ fontWeight: "lighter" }}>{citem}</strong>}
+              </li>
+            );
           })}
         </ul>
-      </div>,
+      </StyledDiv>,
       document.body
     );
   } else {
