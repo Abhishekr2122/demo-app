@@ -20,7 +20,7 @@ export default function NavBar() {
       </li>
 
       <li>
-        <ButtonIcon>
+        <ButtonIcon style={{ border: "2px solid   #111827" }}>
           <NavLink to={"/users"}>
             <HiOutlineUser />
           </NavLink>

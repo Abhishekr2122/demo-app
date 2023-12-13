@@ -4,7 +4,7 @@ import NavBar from "../components/NavBar";
 const StyledHeader = styled.header`
   background-color: #18212f;
   padding: 1.2rem 4.8rem;
-  border-bottom: 1px solid #18212f;
+  border-bottom: 1px solid lightgrey;
   display: flex;
   align-items: center;
   justify-content: flex-end;

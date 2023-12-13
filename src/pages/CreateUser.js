@@ -3,7 +3,9 @@ import Form from "../ui/Form";
 import FormRow from "../ui/FormRow";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
-import { getCountries } from "../getCountries";
+
+import Modal, { OutPutContainer } from "../ui/Modal";
+import { InputElem } from "../ui/Modal";
 
 const Paragraph = styled.p`
   color: red;
@@ -18,7 +20,7 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>First Name</strong>
         </label>
-        <Input type="text" id="firstName" placeholder="firtname" />
+        <Input type="text" id="firstName" placeholder="firstname" />
       </FormRow>
       <FormRow>
         <label>
@@ -54,14 +56,18 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>Country</strong>
         </label>
-        <Input
+        <Modal>
+          <InputElem placeholder={"country"} type={"country"} />
+          <OutPutContainer />
+        </Modal>
+        {/* <Input
           type="search"
           id="country"
           placeholder="country"
           onFocus={function () {
             getCountries();
           }}
-        />
+        /> */}
       </FormRow>
       <FormRow>
         <label>
