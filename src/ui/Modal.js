@@ -3,6 +3,7 @@ import Input from "./Input";
 import { getCountries } from "../getCountries";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
+import { ImCancelCircle } from "react-icons/im";
 
 const ModalContext = createContext();
 
@@ -220,7 +221,9 @@ export default function Modal({ children }) {
     "Poland",
   ];
   return (
-    <ModalContext.Provider value={{ isFocused, setIsFocused, data }}>
+    <ModalContext.Provider
+      value={{ isFocused, setIsFocused, data, value, setValue }}
+    >
       {children}
     </ModalContext.Provider>
   );
@@ -232,10 +235,11 @@ export function useModalContext() {
 }
 
 export function InputElem({ type, placeholder }) {
-  const { isFocused, setIsFocused, data } = useModalContext();
+  const { isFocused, setIsFocused, data, value } = useModalContext();
 
   return (
     <Input
+      value={value}
       type="search"
       placeholder={placeholder}
       onFocus={function () {
@@ -250,9 +254,9 @@ export function InputElem({ type, placeholder }) {
           getCountries();
         }
       }}
-      onBlur={function () {
-        setIsFocused(false);
-      }}
+      // onBlur={function () {
+      //   setIsFocused(false);
+      // }}
       autoComplete="new-search"
     />
   );
@@ -274,12 +278,23 @@ const StyledDiv = styled.div`
   }
 `;
 export function OutPutContainer() {
-  const { isFocused, data } = useModalContext();
+  const { isFocused, data, setValue, setIsFocused } = useModalContext();
 
   if (isFocused) {
     return createPortal(
       <StyledDiv>
         <ul>
+          <ImCancelCircle
+            style={{
+              color: "white",
+              position: "absolute",
+              left: "90%",
+              top: "3%",
+            }}
+            onClick={function () {
+              setIsFocused(false);
+            }}
+          />
           {data?.map(function (citem, i) {
             return (
               <li
