@@ -7,7 +7,7 @@ import { ImCancelCircle } from "react-icons/im";
 
 const StateModalContext = createContext();
 
-export default function StateModal({ children, country }) {
+export default function StateModal({ children, country, setState }) {
   const { isLoading, data } = useStates(country?.value);
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -23,7 +23,16 @@ export default function StateModal({ children, country }) {
 
   return (
     <StateModalContext.Provider
-      value={{ value, isOpen, setValue, country, setIsOpen, data, isLoading }}
+      value={{
+        value,
+        isOpen,
+        setValue,
+        country,
+        setIsOpen,
+        data,
+        isLoading,
+        setState,
+      }}
     >
       {children}
     </StateModalContext.Provider>
@@ -84,7 +93,7 @@ const StyledLi = styled.li`
 `;
 
 export function StateOutputContainer() {
-  const { isOpen, country, data, isLoading, setIsOpen, setValue } =
+  const { isOpen, country, data, isLoading, setIsOpen, setValue, setState } =
     useStateModalContext();
 
   if (isOpen && country !== null && !isLoading) {
@@ -109,6 +118,7 @@ export function StateOutputContainer() {
                 onClick={function () {
                   setValue(citem.name);
                   setIsOpen(false);
+                  setState(citem.name);
                 }}
               >
                 {

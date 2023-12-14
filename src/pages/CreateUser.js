@@ -11,6 +11,7 @@ import StateModal, {
 } from "../ui/StateModal";
 import { InputElem } from "../ui/Modal";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Paragraph = styled.p`
   color: red;
@@ -19,6 +20,8 @@ const Paragraph = styled.p`
 `;
 
 export default function CreateUser() {
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const { errors } = formState;
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
 
@@ -33,7 +36,12 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>First Name</strong>
         </label>
-        <Input type="text" id="firstName" placeholder="firstname" />
+        <Input
+          type="text"
+          id="firstName"
+          placeholder="firstname"
+          {...register("firstName", { required: "This field is required" })}
+        />
       </FormRow>
       <FormRow>
         <label>
@@ -44,6 +52,7 @@ export default function CreateUser() {
           id="lastName"
           placeholder="lastname"
           autoComplete="new-text"
+          {...register("lastName", { required: "This field is required" })}
         />
       </FormRow>
       <FormRow>
@@ -55,6 +64,13 @@ export default function CreateUser() {
           placeholder="email"
           id="email"
           autoComplete="new-email"
+          {...register("email", {
+            required: "This field is required",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "Please provide a valid email address",
+            },
+          })}
         />
       </FormRow>
       <FormRow>
@@ -63,9 +79,10 @@ export default function CreateUser() {
         </label>
         <Input
           type="tel"
-          id="phonenumber"
+          id="phoneNumber"
           placeholder="phonenumber"
           autoComplete="new-tel"
+          {...register("phoneNumber", { required: "This field is required" })}
         />
       </FormRow>
       <FormRow>
@@ -77,6 +94,7 @@ export default function CreateUser() {
           id="address1"
           placeholder="address1"
           autoComplete="new-text"
+          {...register("address1", { required: "This field is required" })}
         />
       </FormRow>
       <FormRow>
@@ -98,20 +116,12 @@ export default function CreateUser() {
           <InputElem placeholder={"country"} type={"country"} />
           <OutPutContainer />
         </Modal>
-        {/* <Input
-          type="search"
-          id="country"
-          placeholder="country"
-          onFocus={function () {
-            getCountries();
-          }}
-        /> */}
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>State</strong>
         </label>
-        <StateModal country={country}>
+        <StateModal country={country} setState={setState}>
           <InputElement type="state" placeholder="state" />
           <StateOutputContainer />
         </StateModal>
@@ -121,10 +131,11 @@ export default function CreateUser() {
           <strong style={{ color: "white" }}>Zipcode</strong>
         </label>
         <Input
-          type="number"
+          type="text"
           id="zipcode"
           placeholder="zipcode"
           autoComplete="new-number"
+          {...register("zipcode", { required: "This field is required" })}
         />
       </FormRow>
       <FormRow>
