@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import MainNav from "../ui/MainNav";
+import { useEffect } from "react";
+import getStates from "../getStates";
 
 const StyledSidebar = styled.aside`
   /* background-color: var(--color-grey-0); */
@@ -13,6 +15,9 @@ const StyledSidebar = styled.aside`
 `;
 
 export default function SideBar() {
+  useEffect(function () {
+    getStates();
+  }, []);
   return (
     <StyledSidebar>
       <MainNav />

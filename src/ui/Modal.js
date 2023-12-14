@@ -20,7 +20,7 @@ export default function Modal({ children, setCountry }) {
       if (isOpen && value.length > 0) {
         setOutputData(function () {
           return remoteData.filter(function (citem) {
-            return citem.toLowerCase().includes(value.toLowerCase());
+            return citem.value.toLowerCase().includes(value.toLowerCase());
           });
         });
       }
@@ -37,7 +37,6 @@ export default function Modal({ children, setCountry }) {
       value={{
         isOpen,
         setIsOpen,
-
         value,
         setValue,
         outputData,
