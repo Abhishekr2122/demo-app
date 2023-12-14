@@ -57,7 +57,8 @@ export function useModalContext() {
 }
 
 export function InputElem({ type, placeholder }) {
-  const { setIsOpen, data, value, setValue, setOutputData } = useModalContext();
+  const { setIsOpen, data, value, setValue, setOutputData, setCountry } =
+    useModalContext();
 
   return (
     <Input
@@ -68,6 +69,7 @@ export function InputElem({ type, placeholder }) {
         if (type === "country") {
           if (value) {
             setValue("");
+            setCountry(null);
           }
           setIsOpen(true);
         }

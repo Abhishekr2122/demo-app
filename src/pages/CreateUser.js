@@ -5,7 +5,10 @@ import Input from "../ui/Input";
 import Button from "../ui/Button";
 
 import Modal, { OutPutContainer } from "../ui/Modal";
-import StateModal, { InputElement } from "../ui/StateModal";
+import StateModal, {
+  InputElement,
+  StateOutputContainer,
+} from "../ui/StateModal";
 import { InputElem } from "../ui/Modal";
 import { useState } from "react";
 
@@ -110,6 +113,7 @@ export default function CreateUser() {
         </label>
         <StateModal country={country}>
           <InputElement type="state" placeholder="state" />
+          <StateOutputContainer />
         </StateModal>
       </FormRow>
       <FormRow>
