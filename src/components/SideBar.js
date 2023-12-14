@@ -15,9 +15,6 @@ const StyledSidebar = styled.aside`
 `;
 
 export default function SideBar() {
-  useEffect(function () {
-    getStates();
-  }, []);
   return (
     <StyledSidebar>
       <MainNav />

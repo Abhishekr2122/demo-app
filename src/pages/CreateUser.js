@@ -5,6 +5,7 @@ import Input from "../ui/Input";
 import Button from "../ui/Button";
 
 import Modal, { OutPutContainer } from "../ui/Modal";
+import StateModal, { InputElement } from "../ui/StateModal";
 import { InputElem } from "../ui/Modal";
 import { useState } from "react";
 
@@ -107,12 +108,9 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>State</strong>
         </label>
-        <Input
-          type="search"
-          id="state"
-          placeholder="state"
-          autoComplete="new-search"
-        />
+        <StateModal country={country}>
+          <InputElement type="state" placeholder="state" />
+        </StateModal>
       </FormRow>
       <FormRow>
         <label>
