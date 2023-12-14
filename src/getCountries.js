@@ -12,11 +12,8 @@ export async function getCountries() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result[0]);
-    const countries = result.map(function (citem) {
-      return citem.value;
-    });
 
+    const countries = result;
     return countries;
   } catch (error) {
     console.error(error);

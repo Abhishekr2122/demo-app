@@ -7,16 +7,13 @@ import { useCountries } from "../hooks/useCountries";
 
 const ModalContext = createContext();
 
-export default function Modal({ children }) {
+export default function Modal({ children, setCountry }) {
   const { isLoading, data: remoteData } = useCountries();
-  console.log(isLoading, "this is the remotedata", remoteData);
+
   const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
-  console.log(value.length);
 
   const [outputData, setOutputData] = useState([]);
-
-  console.log(outputData);
 
   useEffect(
     function () {
@@ -47,6 +44,7 @@ export default function Modal({ children }) {
         setOutputData,
         remoteData,
         isLoading,
+        setCountry,
       }}
     >
       {children}
@@ -71,7 +69,6 @@ export function InputElem({ type, placeholder }) {
         if (type === "country") {
           if (value) {
             setValue("");
-            setOutputData(data);
           }
           setIsOpen(true);
         }
@@ -116,6 +113,7 @@ export function OutPutContainer() {
     isLoading,
     remoteData,
     value,
+    setCountry,
   } = useModalContext();
 
   if (isOpen && !isLoading) {
@@ -133,17 +131,22 @@ export function OutPutContainer() {
           }}
         />
         <ul>
-          {(isOpen ? (value.length > 0 ? outputData : remoteData) : []).map(
+          {(isOpen ? (value.length > 0 ? outputData : remoteData) : [])?.map(
             function (citem, i) {
               return (
                 <StyledLi
                   key={i}
                   onClick={function () {
-                    setValue(citem);
+                    setValue(citem.value);
+                    setCountry(citem);
                     setIsOpen(false);
                   }}
                 >
-                  {<strong style={{ fontWeight: "lighter" }}>{citem}</strong>}
+                  {
+                    <strong style={{ fontWeight: "lighter" }}>
+                      {citem.value}
+                    </strong>
+                  }
                 </StyledLi>
               );
             }

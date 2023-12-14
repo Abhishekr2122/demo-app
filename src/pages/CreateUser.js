@@ -6,6 +6,7 @@ import Button from "../ui/Button";
 
 import Modal, { OutPutContainer } from "../ui/Modal";
 import { InputElem } from "../ui/Modal";
+import { useState } from "react";
 
 const Paragraph = styled.p`
   color: red;
@@ -14,8 +15,16 @@ const Paragraph = styled.p`
 `;
 
 export default function CreateUser() {
+  const [country, setCountry] = useState(null);
+  const [state, setState] = useState(null);
+
+  console.log(country);
   return (
-    <Form>
+    <Form
+      onSubmit={function (e) {
+        e.preventDefault();
+      }}
+    >
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>First Name</strong>
@@ -81,7 +90,7 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>Country</strong>
         </label>
-        <Modal>
+        <Modal setCountry={setCountry}>
           <InputElem placeholder={"country"} type={"country"} />
           <OutPutContainer />
         </Modal>
