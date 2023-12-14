@@ -17,7 +17,7 @@ export async function getCountries() {
       return citem.value;
     });
 
-    console.log(countries);
+    return countries;
   } catch (error) {
     console.error(error);
   }

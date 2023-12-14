@@ -1,17 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Input from "./Input";
-import { getCountries } from "../getCountries";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { ImCancelCircle } from "react-icons/im";
+import { useCountries } from "../hooks/useCountries";
 
 const ModalContext = createContext();
 
 export default function Modal({ children }) {
-  const [isFocused, setIsFocused] = useState(false);
+  const { isLoading, data: remoteData } = useCountries();
+  console.log(isLoading, "this is the remotedata", remoteData);
+  const [isOpen, setIsOpen] = useState(false);
   const [value, setValue] = useState("");
-  console.log(isFocused);
-  // const [data, setData] = useState([]);
+  console.log(value.length);
+
   const data = [
     "Portugal",
     "Palau",
@@ -220,9 +222,21 @@ export default function Modal({ children }) {
     "Pakistan",
     "Poland",
   ];
+
+  const [outputData, setOutputData] = useState(data);
+
+  console.log(outputData);
   return (
     <ModalContext.Provider
-      value={{ isFocused, setIsFocused, data, value, setValue }}
+      value={{
+        isOpen,
+        setIsOpen,
+        data,
+        value,
+        setValue,
+        outputData,
+        setOutputData,
+      }}
     >
       {children}
     </ModalContext.Provider>
@@ -235,28 +249,25 @@ export function useModalContext() {
 }
 
 export function InputElem({ type, placeholder }) {
-  const { isFocused, setIsFocused, data, value } = useModalContext();
+  const { setIsOpen, data, value, setValue, setOutputData } = useModalContext();
 
   return (
     <Input
       value={value}
-      type="search"
+      type="text"
       placeholder={placeholder}
-      onFocus={function () {
+      onFocus={function (e) {
         if (type === "country") {
-          // const res = getCountries();
-          setIsFocused(true);
-          // setData(res);
+          if (value) {
+            setValue("");
+            setOutputData(data);
+          }
+          setIsOpen(true);
         }
       }}
-      onChange={function () {
-        if (type === "country") {
-          getCountries();
-        }
+      onChange={function (e) {
+        setValue(e.target.value);
       }}
-      // onBlur={function () {
-      //   setIsFocused(false);
-      // }}
       autoComplete="new-search"
     />
   );
@@ -268,7 +279,7 @@ const StyledDiv = styled.div`
   left: 50%;
   border-radius: 4px;
   height: 250px;
-  width: auto;
+  width: 15%;
   overflow: scroll;
   scroll-behavior: smooth;
   background-color: #111827;
@@ -277,40 +288,42 @@ const StyledDiv = styled.div`
     scroll-behavior: smooth;
   }
 `;
-export function OutPutContainer() {
-  const { isFocused, data, setValue, setIsFocused } = useModalContext();
 
-  if (isFocused) {
+const StyledLi = styled.li`
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  border-bottom: 2px solid #18212f;
+`;
+export function OutPutContainer() {
+  const { isOpen, data, setValue, setIsOpen, outputData } = useModalContext();
+
+  if (isOpen) {
     return createPortal(
       <StyledDiv>
+        <ImCancelCircle
+          style={{
+            color: "white",
+            position: "absolute",
+            left: "90%",
+            top: "3%",
+          }}
+          onClick={function () {
+            setIsOpen(false);
+          }}
+        />
         <ul>
-          <ImCancelCircle
-            style={{
-              color: "white",
-              position: "absolute",
-              left: "90%",
-              top: "3%",
-            }}
-            onClick={function () {
-              setIsFocused(false);
-            }}
-          />
-          {data?.map(function (citem, i) {
+          {outputData?.map(function (citem, i) {
             return (
-              <li
+              <StyledLi
                 key={i}
-                style={{
-                  color: "white",
-                  cursor: "pointer",
-                  padding: "4px",
-                  borderBottom: "2px solid #18212f",
-                }}
                 onClick={function () {
-                  console.log(citem);
+                  setValue(citem);
+                  setIsOpen(false);
                 }}
               >
                 {<strong style={{ fontWeight: "lighter" }}>{citem}</strong>}
-              </li>
+              </StyledLi>
             );
           })}
         </ul>
