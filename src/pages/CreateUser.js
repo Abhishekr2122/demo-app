@@ -20,7 +20,7 @@ const Paragraph = styled.p`
 `;
 
 export default function CreateUser() {
-  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const { register, formState, handleSubmit, reset } = useForm();
   const { errors } = formState;
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
@@ -31,6 +31,8 @@ export default function CreateUser() {
       college: "D.Y Patil College of Engineering Akurdi Pune",
     },
   ]);
+
+  console.log(country);
 
   useEffect(
     function () {

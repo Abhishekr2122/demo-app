@@ -2,11 +2,12 @@ import { HiOutlineUser } from "react-icons/hi2";
 import styled from "styled-components";
 import ButtonIcon from "../ui/ButtonIcon";
 import Logo from "../ui/Logo";
+import { IoCreate } from "react-icons/io5";
 import { NavLink } from "react-router-dom";
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
-  gap: 0.4rem;
+  gap: 1.5rem;
 `;
 
 export default function NavBar() {
@@ -23,6 +24,14 @@ export default function NavBar() {
         <ButtonIcon style={{ border: "2px solid   #111827" }}>
           <NavLink to={"/users"}>
             <HiOutlineUser />
+          </NavLink>
+        </ButtonIcon>
+      </li>
+
+      <li>
+        <ButtonIcon style={{ border: "2px solid   #111827" }}>
+          <NavLink to={"/createusers"}>
+            <IoCreate />
           </NavLink>
         </ButtonIcon>
       </li>

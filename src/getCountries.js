@@ -14,6 +14,7 @@ export async function getCountries() {
     const result = await response.json();
 
     const countries = result;
+
     return countries;
   } catch (error) {
     console.error(error);
