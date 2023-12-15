@@ -7,7 +7,7 @@ import { useCountries } from "../hooks/useCountries";
 
 const ModalContext = createContext();
 
-export default function Modal({ children, setCountry }) {
+export default function Modal({ children, setCountry, country }) {
   const { isLoading, data: remoteData } = useCountries();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +31,15 @@ export default function Modal({ children, setCountry }) {
   useEffect(function () {
     setOutputData(remoteData);
   }, []);
+
+  useEffect(
+    function () {
+      if (country === null) {
+        setValue("");
+      }
+    },
+    [country, setValue]
+  );
 
   return (
     <ModalContext.Provider
@@ -57,13 +66,13 @@ export function useModalContext() {
 }
 
 export function InputElem({ type, placeholder }) {
-  const { setIsOpen, data, value, setValue, setOutputData, setCountry } =
-    useModalContext();
+  const { setIsOpen, value, setValue, setCountry } = useModalContext();
 
   return (
     <Input
       value={value}
       type="text"
+      id="country"
       placeholder={placeholder}
       onFocus={function (e) {
         if (type === "country") {
@@ -78,6 +87,7 @@ export function InputElem({ type, placeholder }) {
         setValue(e.target.value);
       }}
       autoComplete="new-search"
+      required
     />
   );
 }

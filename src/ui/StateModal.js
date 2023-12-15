@@ -52,6 +52,7 @@ export function InputElement({ placeholder }) {
       value={value}
       type="text"
       placeholder={placeholder}
+      id="state"
       onFocus={function () {
         if (country !== null) {
           setIsOpen(true);
@@ -64,6 +65,7 @@ export function InputElement({ placeholder }) {
         setValue("hello");
       }}
       autoComplete="new-text"
+      required
     />
   );
 }

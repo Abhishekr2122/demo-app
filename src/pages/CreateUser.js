@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Paragraph = styled.p`
-  color: red;
+  color: grey;
   width: auto;
   height: auto;
 `;
@@ -25,13 +25,14 @@ export default function CreateUser() {
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
 
-  console.log(country);
+  function onSubmit(e) {
+    console.log("hello");
+  }
+
+  console.log(errors);
+
   return (
-    <Form
-      onSubmit={function (e) {
-        e.preventDefault();
-      }}
-    >
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>First Name</strong>
@@ -42,6 +43,11 @@ export default function CreateUser() {
           placeholder="firstname"
           {...register("firstName", { required: "This field is required" })}
         />
+        {errors?.firstName?.message ? (
+          <Paragraph>{errors?.firstName?.message}</Paragraph>
+        ) : (
+          ""
+        )}
       </FormRow>
       <FormRow>
         <label>
@@ -54,6 +60,11 @@ export default function CreateUser() {
           autoComplete="new-text"
           {...register("lastName", { required: "This field is required" })}
         />
+        {errors?.lastName?.message ? (
+          <Paragraph>{errors?.lastName?.message}</Paragraph>
+        ) : (
+          ""
+        )}
       </FormRow>
       <FormRow>
         <label>
@@ -72,6 +83,11 @@ export default function CreateUser() {
             },
           })}
         />
+        {errors?.email?.message ? (
+          <Paragraph>{errors?.email?.message}</Paragraph>
+        ) : (
+          ""
+        )}
       </FormRow>
       <FormRow>
         <label>
@@ -84,6 +100,11 @@ export default function CreateUser() {
           autoComplete="new-tel"
           {...register("phoneNumber", { required: "This field is required" })}
         />
+        {errors?.phoneNumber?.message ? (
+          <Paragraph>{errors?.phoneNumber?.message}</Paragraph>
+        ) : (
+          ""
+        )}
       </FormRow>
       <FormRow>
         <label>
@@ -96,6 +117,11 @@ export default function CreateUser() {
           autoComplete="new-text"
           {...register("address1", { required: "This field is required" })}
         />
+        {errors?.address1?.message ? (
+          <Paragraph>{errors?.address1?.message}</Paragraph>
+        ) : (
+          ""
+        )}
       </FormRow>
       <FormRow>
         <label>
@@ -112,8 +138,12 @@ export default function CreateUser() {
         <label>
           <strong style={{ color: "white" }}>Country</strong>
         </label>
-        <Modal setCountry={setCountry}>
-          <InputElem placeholder={"country"} type={"country"} />
+        <Modal setCountry={setCountry} country={country}>
+          <InputElem
+            placeholder={"country"}
+            type={"country"}
+            register={register}
+          />
           <OutPutContainer />
         </Modal>
       </FormRow>
@@ -137,14 +167,22 @@ export default function CreateUser() {
           autoComplete="new-number"
           {...register("zipcode", { required: "This field is required" })}
         />
+        {errors?.zipcode?.message ? (
+          <Paragraph>{errors?.zipcode?.message}</Paragraph>
+        ) : (
+          ""
+        )}
       </FormRow>
       <FormRow>
         {/* type is an HTML attribute! */}
         <Button
           variation="secondary"
           type="reset"
-          //   disabled={isLoading}
-          //   onClick={reset}
+          onClick={function () {
+            reset();
+            setCountry(null);
+            setState(null);
+          }}
           style={{ color: "white" }}
         >
           Cancel
