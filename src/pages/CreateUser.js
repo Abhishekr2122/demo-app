@@ -10,7 +10,7 @@ import StateModal, {
   StateOutputContainer,
 } from "../ui/StateModal";
 import { InputElem } from "../ui/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Paragraph = styled.p`
@@ -24,8 +24,28 @@ export default function CreateUser() {
   const { errors } = formState;
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
+  const [users, setUsers] = useState([
+    {
+      name: "abhishek",
+      age: 23,
+      college: "D.Y Patil College of Engineering Akurdi Pune",
+    },
+  ]);
+
+  useEffect(
+    function () {
+      localStorage.setItem("users", JSON.stringify(users));
+    },
+    [users]
+  );
+
+  useEffect(function () {
+    const users = JSON.parse(localStorage.getItem("users"));
+    console.log(users);
+  }, []);
 
   function onSubmit(e) {
+    console.log(e);
     console.log("hello");
   }
 
@@ -161,7 +181,7 @@ export default function CreateUser() {
           <strong style={{ color: "white" }}>Zipcode</strong>
         </label>
         <Input
-          type="text"
+          type="number"
           id="zipcode"
           placeholder="zipcode"
           autoComplete="new-number"
