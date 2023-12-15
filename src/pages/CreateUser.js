@@ -44,12 +44,36 @@ export default function CreateUser() {
     console.log(users);
   }, []);
 
-  function onSubmit(e) {
-    console.log(e);
-    console.log("hello");
+  function onSubmit(formDataObj) {
+    const {
+      firstName,
+      lastName,
+      zipcode,
+      phoneNumber,
+      email,
+      address1,
+      address2,
+    } = formDataObj;
+    const userObj = {
+      firstName,
+      lastName,
+      zipcode,
+      phoneNumber,
+      email,
+      address1,
+      address2,
+      state,
+      country,
+    };
+    setUsers(function (prevUser) {
+      return [userObj, ...prevUser];
+    });
+    setCountry(null);
+    setState(null);
+    reset();
   }
 
-  console.log(errors);
+  console.log(users);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -152,6 +176,7 @@ export default function CreateUser() {
           id="address2"
           placeholder="address2(optional)"
           autoComplete="new-text"
+          {...register("address2")}
         />
       </FormRow>
       <FormRow>
