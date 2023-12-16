@@ -12,6 +12,7 @@ import StateModal, {
 import { InputElem } from "../ui/Modal";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const Paragraph = styled.p`
   color: grey;
@@ -70,6 +71,7 @@ export default function CreateUser() {
     setUsers(function (prevUser) {
       return [userObj, ...prevUser];
     });
+    toast.success("New user successfully created");
     setCountry(null);
     setState(null);
     reset();

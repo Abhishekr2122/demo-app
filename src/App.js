@@ -35,7 +35,7 @@ function App() {
           gutter={12}
           containerStyle={{ margin: "8px" }}
           toastOptions={{
-            success: { duration: 3000 },
+            success: { duration: 1300 },
             error: { duration: 5000 },
             style: {
               fontSize: "16px",
