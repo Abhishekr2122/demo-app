@@ -27,13 +27,66 @@ export default function CreateUser() {
   const [state, setState] = useState(null);
   const [users, setUsers] = useState([
     {
-      name: "abhishek",
-      age: 23,
-      college: "D.Y Patil College of Engineering Akurdi Pune",
+      firstName: "Mahesh",
+      lastName: "Jadhav",
+      phoneNumber: 8527419658,
+      email: "maheshj23@gmail.com",
+      country: "India",
+      state: "Maharashtra",
+      address1: "Baner,Pune",
+      address2: "",
+      zipcode: 124563,
+      id: 1,
+    },
+    {
+      firstName: "Harry",
+      lastName: "Hudson",
+      phoneNumber: 7485962536,
+      email: "harry56@gmail.com",
+      country: "England",
+      state: "Bristol",
+      address1: "Abbotswood",
+      address2: "",
+      zipcode: 415278,
+    },
+    {
+      firstName: "John",
+      lastName: "Snow",
+      phoneNumber: 7894561245,
+      email: "john87@gmail.com",
+      country: "Portugal",
+      state: "Porto",
+      address1: "R Pádua Correia 25, Vila Nova De Gaia",
+      address2: "",
+      zipcode: 748596,
+    },
+
+    {
+      firstName: "Shyam",
+      lastName: "Sharma",
+      phoneNumber: 7894562365,
+      email: "shyam12@gmail.com",
+      country: "India",
+      state: "Bihar",
+      address1: "Thana road, Hajipur",
+      address2: "",
+      zipcode: 844101,
+    },
+
+    {
+      firstName: "Ron",
+      lastName: "wisley",
+      phoneNumber: 7894561254,
+      email: "ron45@gmail.com",
+      country: "France",
+      state: "Brittany",
+      address1: "Rennes",
+      address2: "",
+      zipcode: 741852,
     },
   ]);
 
-  console.log(country);
+  console.log(users);
 
   useEffect(
     function () {
@@ -204,6 +257,7 @@ export default function CreateUser() {
           id="address2"
           placeholder="address2(optional)"
           autoComplete="new-text"
+          defaultValue={""}
           {...register("address2")}
         />
       </FormRow>

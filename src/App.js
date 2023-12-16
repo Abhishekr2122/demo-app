@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
@@ -24,6 +24,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route element={<AppLayout />}>
+              <Route index element={<Navigate replace to="users" />} />
               <Route path="users" element={<Users />} />
               <Route path="createusers" element={<CreateUser />} />
               <Route path="*" element={<PageNotFound />} />

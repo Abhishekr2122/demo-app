@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import TableRow from "../ui/TableRow";
+import { useEffect, useState } from "react";
 
 const StyledTable = styled.table`
   border: 1px solid #c6b3b3;
@@ -22,6 +23,19 @@ const StyledHead = styled.th`
 `;
 
 export default function Users() {
+  const [dataLoading, setDataLoading] = useState(false);
+  const [tableData, setTableData] = useState([]);
+
+  useEffect(function () {
+    const users = JSON.parse(localStorage.getItem("users"));
+    setTableData(users);
+    setDataLoading(false);
+  }, []);
+
+  if (dataLoading) {
+    return <p>Loading Data...</p>;
+  }
+
   return (
     <div style={{ marginTop: "10px" }}>
       <StyledTable>
@@ -31,14 +45,16 @@ export default function Users() {
             <StyledHead>Lastname</StyledHead>
             <StyledHead>Email</StyledHead>
             <StyledHead>Phonenumber</StyledHead>
-            <StyledHead>Address1</StyledHead>
-            <StyledHead>Address2</StyledHead>
             <StyledHead>Country</StyledHead>
             <StyledHead>State</StyledHead>
+            <StyledHead>Address1</StyledHead>
+            <StyledHead>Address2</StyledHead>
             <StyledHead>Zipcode</StyledHead>
             <StyledHead>Actions</StyledHead>
           </StyledRow>
-          <TableRow />
+          {tableData?.map(function (citem, i) {
+            return <TableRow data={citem} key={i} />;
+          })}
         </StyledTableBody>
       </StyledTable>
     </div>

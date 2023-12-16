@@ -18,18 +18,18 @@ const StyledRowData = styled.td`
   }
 `;
 
-export default function TableRow() {
+export default function TableRow({ data }) {
   return (
     <StyledInputRow>
-      <StyledRowData>Abhishek</StyledRowData>
-      <StyledRowData>Shinde</StyledRowData>
-      <StyledRowData>abhishekrshinde21@gmail.com</StyledRowData>
-      <StyledRowData>7720960310</StyledRowData>
-      <StyledRowData>Spectrum Nivas gurudwara colony akurdi pune</StyledRowData>
-      <StyledRowData>Akurdi</StyledRowData>
-      <StyledRowData>India</StyledRowData>
-      <StyledRowData>Maharashtra</StyledRowData>
-      <StyledRowData>431605</StyledRowData>
+      <StyledRowData>{data.firstName}</StyledRowData>
+      <StyledRowData>{data.lastName}</StyledRowData>
+      <StyledRowData>{data.email}</StyledRowData>
+      <StyledRowData>{data.phoneNumber}</StyledRowData>
+      <StyledRowData>{data.country}</StyledRowData>
+      <StyledRowData>{data.state}</StyledRowData>
+      <StyledRowData>{data.address1}</StyledRowData>
+      <StyledRowData>{data.address2 ? data.address2 : "-"}</StyledRowData>
+      <StyledRowData>{data.zipcode}</StyledRowData>
       <StyledRowData>
         <div
           style={{ display: "flex", gap: "0.7rem", justifyContent: "center" }}
