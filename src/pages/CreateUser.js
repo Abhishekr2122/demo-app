@@ -154,6 +154,30 @@ export default function CreateUser() {
           ""
         )}
       </FormRow>
+
+      <FormRow>
+        <label>
+          <strong style={{ color: "white" }}>Country</strong>
+        </label>
+        <Modal setCountry={setCountry} country={country}>
+          <InputElem
+            placeholder={"country"}
+            type={"country"}
+            register={register}
+          />
+          <OutPutContainer />
+        </Modal>
+      </FormRow>
+      <FormRow>
+        <label>
+          <strong style={{ color: "white" }}>State</strong>
+        </label>
+        <StateModal country={country} setState={setState}>
+          <InputElement type="state" placeholder="state" />
+          <StateOutputContainer />
+        </StateModal>
+      </FormRow>
+
       <FormRow>
         <label>
           <strong style={{ color: "white" }}> Address1</strong>
@@ -183,28 +207,7 @@ export default function CreateUser() {
           {...register("address2")}
         />
       </FormRow>
-      <FormRow>
-        <label>
-          <strong style={{ color: "white" }}>Country</strong>
-        </label>
-        <Modal setCountry={setCountry} country={country}>
-          <InputElem
-            placeholder={"country"}
-            type={"country"}
-            register={register}
-          />
-          <OutPutContainer />
-        </Modal>
-      </FormRow>
-      <FormRow>
-        <label>
-          <strong style={{ color: "white" }}>State</strong>
-        </label>
-        <StateModal country={country} setState={setState}>
-          <InputElement type="state" placeholder="state" />
-          <StateOutputContainer />
-        </StateModal>
-      </FormRow>
+
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>Zipcode</strong>

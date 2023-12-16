@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { TbUserEdit } from "react-icons/tb";
+import { MdOutlineDelete } from "react-icons/md";
 
 const StyledInputRow = styled.tr`
   height: 46px;
@@ -8,8 +10,8 @@ const StyledInputRow = styled.tr`
 const StyledRowData = styled.td`
   text-align: center;
   overflow: scroll;
-  max-width: 150px;
-
+  max-width: 100px;
+  color: white;
   &::-webkit-scrollbar {
     display: none;
     scroll-behavior: smooth;
@@ -28,6 +30,18 @@ export default function TableRow() {
       <StyledRowData>India</StyledRowData>
       <StyledRowData>Maharashtra</StyledRowData>
       <StyledRowData>431605</StyledRowData>
+      <StyledRowData>
+        <div
+          style={{ display: "flex", gap: "0.7rem", justifyContent: "center" }}
+        >
+          <button style={{ backgroundColor: " #111827", border: "none" }}>
+            <TbUserEdit style={{ color: "blue" }} />
+          </button>
+          <button style={{ backgroundColor: " #111827", border: "none" }}>
+            <MdOutlineDelete style={{ color: "blue" }} />
+          </button>
+        </div>
+      </StyledRowData>
     </StyledInputRow>
   );
 }

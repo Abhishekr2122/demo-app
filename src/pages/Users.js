@@ -36,6 +36,7 @@ export default function Users() {
             <StyledHead>Country</StyledHead>
             <StyledHead>State</StyledHead>
             <StyledHead>Zipcode</StyledHead>
+            <StyledHead>Actions</StyledHead>
           </StyledRow>
           <TableRow />
         </StyledTableBody>
