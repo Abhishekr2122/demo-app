@@ -21,7 +21,7 @@ export default function NavBar() {
       </li>
 
       <li>
-        <ButtonIcon style={{ border: "2px solid black" }}>
+        <ButtonIcon style={{ border: "2px solid var(--color-brand-600)" }}>
           <NavLink to={"/users"}>
             <HiOutlineUser />
           </NavLink>
@@ -29,7 +29,7 @@ export default function NavBar() {
       </li>
 
       <li>
-        <ButtonIcon style={{ border: "2px solid black" }}>
+        <ButtonIcon style={{ border: "2px solid var(--color-brand-600)" }}>
           <NavLink to={"/createusers"}>
             <IoCreate />
           </NavLink>

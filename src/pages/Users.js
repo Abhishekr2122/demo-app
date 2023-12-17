@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import TableRow from "../ui/TableRow";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { TbUserShare } from "react-icons/tb";
 
 const StyledTable = styled.table`
   border: 1px solid white;
@@ -40,11 +42,69 @@ export default function Users() {
   }, []);
 
   if (dataLoading) {
-    return <p style={{ color: "White" }}>Loading Data...</p>;
+    return (
+      <div
+        style={{
+          height: "50vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <p
+          style={{
+            border: "1px solid #18212f",
+            fontSize: "35px",
+            padding: "8px",
+            borderRadius: "4px",
+            color: "white",
+            backgroundColor: "#18212f",
+          }}
+        >
+          Loading Data...
+        </p>
+        ;
+      </div>
+    );
   }
 
   if (tableData?.length === 0) {
-    return <p>No user data to show. Kindly create users first</p>;
+    return (
+      <div
+        style={{
+          height: "50vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <p
+          style={{
+            border: "1px solid #18212f",
+            fontSize: "35px",
+            padding: "8px",
+            borderRadius: "4px",
+            color: "white",
+            backgroundColor: "#18212f",
+          }}
+        >
+          No user data to show kindly create users{" "}
+          <span>
+            <NavLink
+              to="/createusers"
+              style={{
+                border: "1px solid var(--color-brand-600) ",
+                borderRadius: "6px",
+              }}
+            >
+              <TbUserShare
+                style={{ paddingTop: "9px", color: "var(--color-brand-600)" }}
+              />
+            </NavLink>
+          </span>
+        </p>
+      </div>
+    );
   }
 
   return (

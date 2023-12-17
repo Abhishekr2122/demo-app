@@ -19,6 +19,6 @@ export async function getCountries() {
 
     return countries;
   } catch (error) {
-    toast.error(error.message);
+    toast.error("Failed to fetch the data. Check your internet connection");
   }
 }

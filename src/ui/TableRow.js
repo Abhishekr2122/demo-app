@@ -50,20 +50,26 @@ export default function TableRow({
           style={{ display: "flex", gap: "0.7rem", justifyContent: "center" }}
         >
           <button
-            style={{ backgroundColor: " #111827", border: "none" }}
+            style={{
+              backgroundColor: " #111827",
+              border: "var(--color-brand-600)",
+            }}
             onClick={function () {
               console.log("Edit button is being clicked");
             }}
           >
-            <TbUserEdit style={{ color: "blue" }} />
+            <TbUserEdit style={{ color: "var(--color-brand-600)" }} />
           </button>
           <button
-            style={{ backgroundColor: " #111827", border: "none" }}
+            style={{
+              backgroundColor: " #111827",
+              border: "var(--color-brand-600)",
+            }}
             onClick={function () {
               handleUserDelete();
             }}
           >
-            <MdOutlineDelete style={{ color: "blue" }} />
+            <MdOutlineDelete style={{ color: "var(--color-brand-600)" }} />
           </button>
         </div>
       </StyledRowData>
