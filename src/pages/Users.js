@@ -61,7 +61,15 @@ export default function Users() {
           </StyledRow>
 
           {tableData?.map(function (citem, i) {
-            return <TableRow data={citem} key={i} />;
+            return (
+              <TableRow
+                data={citem}
+                key={i}
+                id={i}
+                tableInputData={tableData}
+                updateTableData={setTableData}
+              />
+            );
           })}
         </StyledTableBody>
       </StyledTable>

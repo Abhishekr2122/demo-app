@@ -62,7 +62,7 @@ export function InputElement({ placeholder }) {
         }
       }}
       onChange={function () {
-        setValue("hello");
+        setValue("");
       }}
       autoComplete="new-text"
       required

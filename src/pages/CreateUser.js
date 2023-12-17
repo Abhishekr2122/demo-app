@@ -25,6 +25,7 @@ export default function CreateUser() {
   const { errors } = formState;
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
+
   const [users, setUsers] = useState(function () {
     const items = localStorage.getItem("users");
     if (items === null || items === undefined) {

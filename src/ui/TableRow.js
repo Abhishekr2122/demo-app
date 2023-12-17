@@ -18,8 +18,20 @@ const StyledRowData = styled.td`
   }
 `;
 
-export default function TableRow({ data }) {
-  console.log("This the data object", data);
+export default function TableRow({
+  data,
+  id,
+  tableInputData,
+  updateTableData,
+}) {
+  console.log("This is the table input data", tableInputData);
+  function handleUserDelete() {
+    const filteredArr = tableInputData.filter(function (citem, i) {
+      return id !== i;
+    });
+    localStorage.setItem("users", JSON.stringify(filteredArr));
+    updateTableData(filteredArr);
+  }
   return (
     <StyledInputRow>
       <StyledRowData>{data.firstName}</StyledRowData>
@@ -35,10 +47,20 @@ export default function TableRow({ data }) {
         <div
           style={{ display: "flex", gap: "0.7rem", justifyContent: "center" }}
         >
-          <button style={{ backgroundColor: " #111827", border: "none" }}>
+          <button
+            style={{ backgroundColor: " #111827", border: "none" }}
+            onClick={function () {
+              console.log("Edit button is being clicked");
+            }}
+          >
             <TbUserEdit style={{ color: "blue" }} />
           </button>
-          <button style={{ backgroundColor: " #111827", border: "none" }}>
+          <button
+            style={{ backgroundColor: " #111827", border: "none" }}
+            onClick={function () {
+              handleUserDelete();
+            }}
+          >
             <MdOutlineDelete style={{ color: "blue" }} />
           </button>
         </div>
