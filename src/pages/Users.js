@@ -43,6 +43,10 @@ export default function Users() {
     return <p style={{ color: "White" }}>Loading Data...</p>;
   }
 
+  if (tableData?.length === 0) {
+    return <p>No user data to show. Kindly create users first</p>;
+  }
+
   return (
     <div style={{ marginTop: "10px" }}>
       <StyledTable>

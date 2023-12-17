@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { TbUserEdit } from "react-icons/tb";
 import { MdOutlineDelete } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const StyledInputRow = styled.tr`
   height: 46px;
@@ -31,6 +32,7 @@ export default function TableRow({
     });
     localStorage.setItem("users", JSON.stringify(filteredArr));
     updateTableData(filteredArr);
+    toast.success("User successfully deleted");
   }
   return (
     <StyledInputRow>
