@@ -46,7 +46,9 @@ export function UpdateContainer() {
       </StyledUpdateContainer>,
       document.body
     );
-  } else {
+  }
+
+  if (isOpen === false) {
     return null;
   }
 }

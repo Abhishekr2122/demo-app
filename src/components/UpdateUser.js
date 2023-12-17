@@ -38,13 +38,13 @@ export default function UpdateUser() {
         <label>
           <strong style={{ color: "white" }}>Country</strong>
         </label>
-        <Input type="text" id="country" defaultValue={"india"} />
+        <Input type="text" id="country" defaultValue={"india"} disabled />
       </FormRow>
       <FormRow>
         <label>
           <strong style={{ color: "white" }}>State</strong>
         </label>
-        <Input type="text" id="state" defaultValue={"Maharashtra"} />
+        <Input type="text" id="state" defaultValue={"Maharashtra"} disabled />
       </FormRow>
       <FormRow>
         <label>

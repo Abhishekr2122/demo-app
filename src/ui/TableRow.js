@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { TbUserEdit } from "react-icons/tb";
 import { MdOutlineDelete } from "react-icons/md";
 import toast from "react-hot-toast";
+import UpdateModal, { UpdateContainer, useUpdateUser } from "./UpdateModal";
+import EditButton from "./EditButton";
 
 const StyledInputRow = styled.tr`
   height: 46px;
@@ -49,17 +51,10 @@ export default function TableRow({
         <div
           style={{ display: "flex", gap: "0.7rem", justifyContent: "center" }}
         >
-          <button
-            style={{
-              backgroundColor: " #111827",
-              border: "var(--color-brand-600)",
-            }}
-            onClick={function () {
-              console.log("Edit button is being clicked");
-            }}
-          >
-            <TbUserEdit style={{ color: "var(--color-brand-600)" }} />
-          </button>
+          <UpdateModal>
+            <EditButton />
+            <UpdateContainer />
+          </UpdateModal>
           <button
             style={{
               backgroundColor: " #111827",
