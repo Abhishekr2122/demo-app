@@ -2,7 +2,15 @@ import { TbUserEdit } from "react-icons/tb";
 import { useUpdateUser } from "./UpdateModal";
 
 export default function EditButton() {
-  const { setIsOpen } = useUpdateUser();
+  const { setIsOpen, setCurrentUser, id, tableInputData } = useUpdateUser();
+
+  function handleEditUser() {
+    const currentUser = tableInputData.filter(function (citem, i) {
+      return id === i;
+    });
+    setIsOpen(true);
+    setCurrentUser(currentUser[0]);
+  }
 
   return (
     <button
@@ -10,11 +18,7 @@ export default function EditButton() {
         backgroundColor: " #111827",
         border: "var(--color-brand-600)",
       }}
-      onClick={function () {
-        setIsOpen(function (crrvalue) {
-          return !crrvalue;
-        });
-      }}
+      onClick={handleEditUser}
     >
       <TbUserEdit style={{ color: "var(--color-brand-600)" }} />
     </button>

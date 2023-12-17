@@ -51,7 +51,7 @@ export default function TableRow({
         <div
           style={{ display: "flex", gap: "0.7rem", justifyContent: "center" }}
         >
-          <UpdateModal>
+          <UpdateModal tableInputData={tableInputData} id={id}>
             <EditButton />
             <UpdateContainer />
           </UpdateModal>
