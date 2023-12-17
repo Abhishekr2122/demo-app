@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+
 export async function getCountries() {
   const url =
     "https://referential.p.rapidapi.com/v1/country?fields=currency%2Ccurrency_num_code%2Ccurrency_code%2Ccontinent_code%2Ccurrency%2Ciso_a3%2Cdial_code&limit=250";
@@ -17,6 +19,6 @@ export async function getCountries() {
 
     return countries;
   } catch (error) {
-    console.error(error);
+    toast.error(error.message);
   }
 }

@@ -3,14 +3,20 @@ import TableRow from "../ui/TableRow";
 import { useEffect, useState } from "react";
 
 const StyledTable = styled.table`
-  border: 1px solid #c6b3b3;
+  border: 1px solid white;
   width: 98.5%;
   border-radius: 2px;
   margin-left: 10px;
   padding: 2px;
 `;
 
-const StyledTableBody = styled.tbody``;
+const StyledTableBody = styled.tbody`
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+    scroll-behavior: smooth;
+  }
+`;
 
 const StyledRow = styled.tr`
   height: 46px;
@@ -23,17 +29,18 @@ const StyledHead = styled.th`
 `;
 
 export default function Users() {
-  const [dataLoading, setDataLoading] = useState(false);
+  const [dataLoading, setDataLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
 
   useEffect(function () {
     const users = JSON.parse(localStorage.getItem("users"));
+    console.log("This is the user data ", users);
     setTableData(users);
     setDataLoading(false);
   }, []);
 
   if (dataLoading) {
-    return <p>Loading Data...</p>;
+    return <p style={{ color: "White" }}>Loading Data...</p>;
   }
 
   return (
@@ -52,6 +59,7 @@ export default function Users() {
             <StyledHead>Zipcode</StyledHead>
             <StyledHead>Actions</StyledHead>
           </StyledRow>
+
           {tableData?.map(function (citem, i) {
             return <TableRow data={citem} key={i} />;
           })}

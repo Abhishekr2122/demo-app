@@ -25,80 +25,26 @@ export default function CreateUser() {
   const { errors } = formState;
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
-  const [users, setUsers] = useState([
-    {
-      firstName: "Mahesh",
-      lastName: "Jadhav",
-      phoneNumber: 8527419658,
-      email: "maheshj23@gmail.com",
-      country: "India",
-      state: "Maharashtra",
-      address1: "Baner,Pune",
-      address2: "",
-      zipcode: 124563,
-      id: 1,
-    },
-    {
-      firstName: "Harry",
-      lastName: "Hudson",
-      phoneNumber: 7485962536,
-      email: "harry56@gmail.com",
-      country: "England",
-      state: "Bristol",
-      address1: "Abbotswood",
-      address2: "",
-      zipcode: 415278,
-    },
-    {
-      firstName: "John",
-      lastName: "Snow",
-      phoneNumber: 7894561245,
-      email: "john87@gmail.com",
-      country: "Portugal",
-      state: "Porto",
-      address1: "R Pádua Correia 25, Vila Nova De Gaia",
-      address2: "",
-      zipcode: 748596,
-    },
-
-    {
-      firstName: "Shyam",
-      lastName: "Sharma",
-      phoneNumber: 7894562365,
-      email: "shyam12@gmail.com",
-      country: "India",
-      state: "Bihar",
-      address1: "Thana road, Hajipur",
-      address2: "",
-      zipcode: 844101,
-    },
-
-    {
-      firstName: "Ron",
-      lastName: "wisley",
-      phoneNumber: 7894561254,
-      email: "ron45@gmail.com",
-      country: "France",
-      state: "Brittany",
-      address1: "Rennes",
-      address2: "",
-      zipcode: 741852,
-    },
-  ]);
-
-  console.log(users);
+  const [users, setUsers] = useState(function () {
+    const items = localStorage.getItem("users");
+    if (items === null || items === undefined) {
+      return [];
+    } else {
+      return JSON.parse(localStorage.getItem("users"));
+    }
+  });
 
   useEffect(
     function () {
-      localStorage.setItem("users", JSON.stringify(users));
+      if (users?.length !== 0) {
+        localStorage.setItem("users", JSON.stringify(users));
+      }
     },
     [users]
   );
 
-  useEffect(function () {
-    const users = JSON.parse(localStorage.getItem("users"));
-    console.log(users);
-  }, []);
+  console.log("This is the user data in the creator form", users?.length);
+  console.log(users);
 
   function onSubmit(formDataObj) {
     const {
@@ -110,6 +56,7 @@ export default function CreateUser() {
       address1,
       address2,
     } = formDataObj;
+
     const userObj = {
       firstName,
       lastName,
@@ -119,7 +66,7 @@ export default function CreateUser() {
       address1,
       address2,
       state,
-      country,
+      country: country.value,
     };
     setUsers(function (prevUser) {
       return [userObj, ...prevUser];
@@ -129,8 +76,6 @@ export default function CreateUser() {
     setState(null);
     reset();
   }
-
-  console.log(users);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

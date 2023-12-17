@@ -19,6 +19,7 @@ const StyledRowData = styled.td`
 `;
 
 export default function TableRow({ data }) {
+  console.log("This the data object", data);
   return (
     <StyledInputRow>
       <StyledRowData>{data.firstName}</StyledRowData>
